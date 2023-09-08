@@ -1,5 +1,5 @@
 [package]
-name = "gmimc_bn254"
+name = "gmimc"
 type = "lib"
 authors = ["TACEO-Labs"]
 compiler_version = "0.10.3"
