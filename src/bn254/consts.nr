@@ -1,11 +1,12 @@
 // Constants for various Poseidon instances in the case of the prime field of the same order as BN254.
 
-use crate::encryption::gmimc::GmimcConfig;
-use crate::encryption::gmimc::config;
+use crate::GmimcConfig;
+use crate::config;
+use dep::std::compat;
 
 // S-box power
 fn alpha() -> Field {
-    assert(crate::compat::is_bn254()); // To prevent config generation for other curves.
+    assert(compat::is_bn254()); // To prevent config generation for other curves.
     5
 }
 
