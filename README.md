@@ -20,7 +20,7 @@ gmimc = { tag = "v0.1.0", git = "https://github.com/TaceoLabs/noir-GMiMC" }
 
 ## Examples
 
-Our API uses an expanded form to call the GMiMC block cipher, similar to the Poseidon API from the Noir standard library to allow to encrypt multiple `Field` elements at once. We use this approach so that we can use precomputed round constants (see Sage Section below) instead of computing them on the fly.
+Our API uses an expanded form to call the GMiMC block cipher, similar to the Poseidon API from the Noir standard library to encrypt multiple `Field` elements at once. We use this approach so that we can use precomputed round constants (see Sage Section below) instead of computing them on the fly.
 To encrypt two `Field` elements with a given key (which is also a `Field` element) write:
 
 ```Rust
