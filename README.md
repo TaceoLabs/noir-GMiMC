@@ -20,7 +20,7 @@ gmimc = { tag = "v0.1.0", git = "https://github.com/TaceoLabs/noir-GMiMC" }
 
 ## Examples
 
-**Note:** Our API uses an expanded form to call the GMiMC block cipher, similar to the Poseidon API from the Noir standard library to allow to encrypt multiple `Field` elements at once. We use this approach so that we can use precomputed round constants (see Sage Section below) instead of computing them on the fly.
+Our API uses an expanded form to call the GMiMC block cipher, similar to the Poseidon API from the Noir standard library to allow to encrypt multiple `Field` elements at once. We use this approach so that we can use precomputed round constants (see Sage Section below) instead of computing them on the fly.
 To encrypt two `Field` elements with a given key (which is also a `Field` element) write:
 
 ```Rust
@@ -30,6 +30,7 @@ To encrypt two `Field` elements with a given key (which is also a `Field` elemen
     let is_plain = gmimc::bn254::dec::x5_2(cipher, key);
     assert(is_plain == plain);
 ```
+**Note:** The GMiMC block cipher has a configurable branch width, the example above uses a 2-branch Feistel network. If encrypting a large number of blocks, using an instance with a larger branch number is more efficient.
 
 For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block cipher there.
 
