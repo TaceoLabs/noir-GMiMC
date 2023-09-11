@@ -27,8 +27,8 @@ To encrypt two `Field` elements with a given key (which is also a `Field` elemen
     let plain = [3,4];
     let key = 0x2129347902376149;
     let cipher = gmimc::bn254::enc::x5_2(plain, key);
-    let plain = gmimc::bn254::dec::x5_2(cipher, key);
-    main(plain, key, cipher);
+    let is_plain = gmimc::bn254::dec::x5_2(cipher, key);
+    assert(is_plain == plain);
 ```
 
 For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block cipher there.
