@@ -19,7 +19,7 @@ gmimc = { tag = "v0.1.0", git = "https://github.com/TaceoLabs/noir-GMiMC" }
 
 ## Examples
 
-**Note:** Our API uses an expanded form to call the GMiMC block-cipher, similar to the Poseidon API from the Noir standard library. We use this approach so that we can use precomputed round constants (see [Tools Section](##Tools)) instead of computing it on the fly.
+**Note:** Our API uses an expanded form to call the GMiMC block cipher, similar to the Poseidon API from the Noir standard library. We use this approach so that we can use precomputed round constants (see Sage Section below) instead of computing them on the fly.
 To encrypt two `Field` elements write:
 
 ```Rust
@@ -30,9 +30,9 @@ To encrypt two `Field` elements write:
     assert(x == plain);
 ```
 
-For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block-cipher there.
+For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block cipher there.
 
-## Tools
+## Sage Script
 
 You can find a Sage implementation of GMiMC under `tools/`. We used this script to generate the round constants defined in `src/bn254/consts.nr`.
 
