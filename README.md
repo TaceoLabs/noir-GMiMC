@@ -36,7 +36,7 @@ For further examples on how to use the GMiMC crate, have a look in the `lib.nr` 
 
 ## Sage Script
 
-You can find a Sage implementation of GMiMC under `tools/`. We used this script to generate the round constants defined in `src/bn254/consts.nr`. The script was written with all current attacks and analysis in mind.
+You can find a Sage implementation of GMiMC under `tools/`. We used this script to generate the round constants defined in `src/bn254/consts.nr`. The script was written with all currently known attacks and analysis in mind.
 
 ## Disclaimer
 
