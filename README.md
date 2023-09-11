@@ -1,5 +1,6 @@
 # Noir GMiMC for BN254
-
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+ 
 This repository contains a Noir crate implementing the GMiMC block cipher for the native curve BN254 in encryption mode.
 
 GMiMC, or the Generalized MiMC family, is an extension of the Feistel-MiMC. Instead of using two branches, GMiMC utilizes the well-studied generalized Feistel structures with t (> 2) branches.
