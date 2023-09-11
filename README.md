@@ -1,11 +1,11 @@
 # Noir GMiMC for BN254
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
  
-This repository contains a Noir crate implementing the GMiMC block cipher for the native curve BN254 in encryption mode.
+This repository contains a Noir crate implementing the GMiMC block cipher for the native curve BN254.
 
-GMiMC, or the Generalized MiMC family, is an extension of the Feistel-MiMC. Instead of using two branches, GMiMC utilizes the well-studied generalized Feistel structures with t (> 2) branches.
+GMiMC, or the Generalized MiMC family, is an extension of the Feistel-MiMC. Instead of using two branches, GMiMC generalizes the Feistel structures with $t (\geq 2)$ branches. GMiMC with $t=2$ is Feistel-MiMC.
 
-Initially designed for an MPC setting, GMiMC uses a Feistel round function where the mapping is $x \rightarrow x^3$. This construction also leads to a cheap instantiation for SNARKs. Due to the characteristics of the underlying primefield, this particular implementation uses the round function $x \rightarrow x^5$.
+GMiMC uses a Feistel round function where the mapping is $x \rightarrow x^d$. This construction leads to a cheap instantiation for SNARKs. Due to the characteristics of the underlying primefield, this particular implementation uses the round function $x \rightarrow x^5$.
 
 For further information, you can read the [GMiMC Paper](https://eprint.iacr.org/2019/397.pdf).
 
@@ -30,7 +30,7 @@ To encrypt two `Field` elements with a given key (which is also a `Field` elemen
     let is_plain = gmimc::bn254::dec::x5_2(cipher, key);
     assert(is_plain == plain);
 ```
-**Note:** The GMiMC block cipher has a configurable branch width, the example above uses a 2-branch Feistel network. If encrypting a large number of blocks, using an instance with a larger branch number is more efficient.
+**Note:** The GMiMC block cipher has a configurable branch width, the example above uses a 2-branch Feistel network (Feistel-MiMC). If encrypting a large number of blocks, using an instance with a larger branch number is more efficient.
 
 For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block cipher there.
 
