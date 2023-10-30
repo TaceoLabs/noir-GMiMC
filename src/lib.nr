@@ -7,7 +7,7 @@ struct GmimcConfig<R> {
     arc: [Field; R], // round constants
 }
 
-fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
+pub fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
     GmimcConfig {
         alpha: alpha,
         arc: arc,
@@ -53,7 +53,7 @@ fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T]  {
 
 
 // General GMiMC block cipher
-fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
     assert(modulus_num_bits() as u16 >= 128); // otherwise key is too small
 
     let GmimcConfig {alpha, arc} = gmimc_conf;
@@ -66,7 +66,7 @@ fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Fi
     x
 }
 
-fn decrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn decrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
     assert(modulus_num_bits() as u16 >= 128); // otherwise key is too small
 
     let GmimcConfig {alpha, arc} = gmimc_conf;

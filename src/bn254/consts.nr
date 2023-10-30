@@ -11,7 +11,7 @@ fn alpha() -> Field {
 }
 
 // GMiMC configurations for states of size 2 to 17.
-fn x5_2_config() -> GmimcConfig<223> {
+pub fn x5_2_config() -> GmimcConfig<223> {
     config(
        alpha(),
        [
@@ -242,7 +242,7 @@ fn x5_2_config() -> GmimcConfig<223> {
     )
 }
 
-fn x5_3_config() -> GmimcConfig<225> {
+pub fn x5_3_config() -> GmimcConfig<225> {
     config(
        alpha(),
        [
@@ -475,7 +475,7 @@ fn x5_3_config() -> GmimcConfig<225> {
     )
 }
 
-fn x5_4_config() -> GmimcConfig<227> {
+pub fn x5_4_config() -> GmimcConfig<227> {
     config(
        alpha(),
        [
@@ -710,7 +710,7 @@ fn x5_4_config() -> GmimcConfig<227> {
     )
 }
 
-fn x5_5_config() -> GmimcConfig<229> {
+pub fn x5_5_config() -> GmimcConfig<229> {
     config(
        alpha(),
        [
@@ -947,7 +947,7 @@ fn x5_5_config() -> GmimcConfig<229> {
     )
 }
 
-fn x5_6_config() -> GmimcConfig<231> {
+pub fn x5_6_config() -> GmimcConfig<231> {
     config(
        alpha(),
        [
@@ -1186,7 +1186,7 @@ fn x5_6_config() -> GmimcConfig<231> {
     )
 }
 
-fn x5_7_config() -> GmimcConfig<233> {
+pub fn x5_7_config() -> GmimcConfig<233> {
     config(
        alpha(),
        [
@@ -1427,7 +1427,7 @@ fn x5_7_config() -> GmimcConfig<233> {
     )
 }
 
-fn x5_8_config() -> GmimcConfig<235> {
+pub fn x5_8_config() -> GmimcConfig<235> {
     config(
        alpha(),
        [
@@ -1670,7 +1670,7 @@ fn x5_8_config() -> GmimcConfig<235> {
     )
 }
 
-fn x5_9_config() -> GmimcConfig<237> {
+pub fn x5_9_config() -> GmimcConfig<237> {
     config(
        alpha(),
        [
@@ -1915,7 +1915,7 @@ fn x5_9_config() -> GmimcConfig<237> {
     )
 }
 
-fn x5_10_config() -> GmimcConfig<239> {
+pub fn x5_10_config() -> GmimcConfig<239> {
     config(
        alpha(),
        [
@@ -2162,7 +2162,7 @@ fn x5_10_config() -> GmimcConfig<239> {
     )
 }
 
-fn x5_11_config() -> GmimcConfig<266> {
+pub fn x5_11_config() -> GmimcConfig<266> {
     config(
        alpha(),
        [
@@ -2436,7 +2436,7 @@ fn x5_11_config() -> GmimcConfig<266> {
     )
 }
 
-fn x5_12_config() -> GmimcConfig<314> {
+pub fn x5_12_config() -> GmimcConfig<314> {
     config(
        alpha(),
        [
@@ -2758,7 +2758,7 @@ fn x5_12_config() -> GmimcConfig<314> {
     )
 }
 
-fn x5_13_config() -> GmimcConfig<366> {
+pub fn x5_13_config() -> GmimcConfig<366> {
     config(
        alpha(),
        [
@@ -3132,7 +3132,7 @@ fn x5_13_config() -> GmimcConfig<366> {
     )
 }
 
-fn x5_14_config() -> GmimcConfig<422> {
+pub fn x5_14_config() -> GmimcConfig<422> {
     config(
        alpha(),
        [
@@ -3562,7 +3562,7 @@ fn x5_14_config() -> GmimcConfig<422> {
     )
 }
 
-fn x5_15_config() -> GmimcConfig<482> {
+pub fn x5_15_config() -> GmimcConfig<482> {
     config(
        alpha(),
        [
@@ -4052,7 +4052,7 @@ fn x5_15_config() -> GmimcConfig<482> {
     )
 }
 
-fn x5_16_config() -> GmimcConfig<546> {
+pub fn x5_16_config() -> GmimcConfig<546> {
     config(
        alpha(),
        [
