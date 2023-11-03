@@ -1,6 +1,7 @@
 # Noir GMiMC for BN254
- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
- 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This repository contains a Noir crate implementing the GMiMC block cipher for the native curve BN254.
 
 GMiMC, or the Generalized MiMC family, is an extension of the Feistel-MiMC. Instead of using two branches, GMiMC generalizes the Feistel structures with $t (\geq 2)$ branches. GMiMC with $t=2$ is Feistel-MiMC.
@@ -15,7 +16,7 @@ In your `Nargo.toml` file, add the following dependency:
 
 ```toml
 [dependencies]
-gmimc = { tag = "v0.1.0", git = "https://github.com/TaceoLabs/noir-GMiMC" }
+gmimc = { tag = "v0.2.0", git = "https://github.com/TaceoLabs/noir-GMiMC" }
 ```
 
 ## Examples
@@ -30,6 +31,7 @@ To encrypt two `Field` elements with a given key (which is also a `Field` elemen
     let is_plain = gmimc::bn254::dec::x5_2(cipher, key);
     assert(is_plain == plain);
 ```
+
 **Note:** The GMiMC block cipher has a configurable branch width, the example above uses a 2-branch Feistel network (Feistel-MiMC). If encrypting a large number of blocks, using an instance with a larger branch number is more efficient.
 
 For further examples on how to use the GMiMC crate, have a look in the `lib.nr` file in the `src/` directory. You can find the tests for all expanded forms of the GMiMC block cipher there.

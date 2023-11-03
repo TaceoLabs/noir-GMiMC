@@ -3,78 +3,92 @@ use crate::bn254::consts;
 use crate::encrypt;
 use crate::GmimcConfig;
 
-fn x5_2(mut x: [Field; 2], k: Field) -> [Field; 2] {
+#[field(bn254)]
+pub fn x5_2(mut x: [Field; 2], k: Field) -> [Field; 2] {
     x = encrypt(consts::x5_2_config(), x, k);
     x
 }
 
-fn x5_3(mut x: [Field; 3], k: Field) -> [Field; 3] {
+#[field(bn254)]
+pub fn x5_3(mut x: [Field; 3], k: Field) -> [Field; 3] {
     x = encrypt(consts::x5_3_config(), x, k);
     x
 }
 
-fn x5_4(mut x: [Field; 4], k: Field) -> [Field; 4] {
+#[field(bn254)]
+pub fn x5_4(mut x: [Field; 4], k: Field) -> [Field; 4] {
     x = encrypt(consts::x5_4_config(), x, k);
     x
 }
 
-fn x5_5(mut x: [Field; 5], k: Field) -> [Field; 5] {
+#[field(bn254)]
+pub fn x5_5(mut x: [Field; 5], k: Field) -> [Field; 5] {
     x = encrypt(consts::x5_5_config(), x, k);
     x
 }
 
-
-fn x5_6(mut x: [Field; 6], k: Field) -> [Field; 6] {
+#[field(bn254)]
+pub fn x5_6(mut x: [Field; 6], k: Field) -> [Field; 6] {
     x = encrypt(consts::x5_6_config(), x, k);
     x
 }
 
-fn x5_7(mut x: [Field; 7], k: Field) -> [Field; 7] {
+#[field(bn254)]
+pub fn x5_7(mut x: [Field; 7], k: Field) -> [Field; 7] {
     x = encrypt(consts::x5_7_config(), x, k);
     x
 }
 
-fn x5_8(mut x: [Field; 8], k: Field) -> [Field; 8] {
+#[field(bn254)]
+pub fn x5_8(mut x: [Field; 8], k: Field) -> [Field; 8] {
     x = encrypt(consts::x5_8_config(), x, k);
     x
 }
 
-fn x5_9(mut x: [Field; 9], k: Field) -> [Field; 9] {
+#[field(bn254)]
+pub fn x5_9(mut x: [Field; 9], k: Field) -> [Field; 9] {
     x = encrypt(consts::x5_9_config(), x, k);
     x
 }
 
-fn x5_10(mut x: [Field; 10], k: Field) -> [Field; 10] {
+#[field(bn254)]
+pub fn x5_10(mut x: [Field; 10], k: Field) -> [Field; 10] {
     x = encrypt(consts::x5_10_config(), x, k);
     x
 }
 
-fn x5_11(mut x: [Field; 11], k: Field) -> [Field; 11] {
+#[field(bn254)]
+pub fn x5_11(mut x: [Field; 11], k: Field) -> [Field; 11] {
     x = encrypt(consts::x5_11_config(), x, k);
     x
 }
 
-fn x5_12(mut x: [Field; 12], k: Field) -> [Field; 12] {
+#[field(bn254)]
+pub fn x5_12(mut x: [Field; 12], k: Field) -> [Field; 12] {
     x = encrypt(consts::x5_12_config(), x, k);
     x
 }
 
-fn x5_13(mut x: [Field; 13], k: Field) -> [Field; 13] {
+#[field(bn254)]
+pub fn x5_13(mut x: [Field; 13], k: Field) -> [Field; 13] {
     x = encrypt(consts::x5_13_config(), x, k);
     x
 }
 
-fn x5_14(mut x: [Field; 14], k: Field) -> [Field; 14] {
+#[field(bn254)]
+pub fn x5_14(mut x: [Field; 14], k: Field) -> [Field; 14] {
     x = encrypt(consts::x5_14_config(), x, k);
     x
 }
 
-fn x5_15(mut x: [Field; 15], k: Field) -> [Field; 15] {
+#[field(bn254)]
+pub fn x5_15(mut x: [Field; 15], k: Field) -> [Field; 15] {
     x = encrypt(consts::x5_15_config(), x, k);
     x
 }
 
-fn x5_16(mut x: [Field; 16], k: Field) -> [Field; 16] {
+#[field(bn254)]
+pub fn x5_16(mut x: [Field; 16], k: Field) -> [Field; 16] {
     x = encrypt(consts::x5_16_config(), x, k);
     x
 }
