@@ -14,7 +14,6 @@ pub fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
     }
 }
 
-
 fn round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
     let sum = state[0] + key + arc;
     let power = sum.pow_32(alpha);
@@ -33,7 +32,7 @@ fn dec_round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> 
     state
 }
 
-fn feistel_shift<T>(mut state: [Field; T]) -> [Field; T]  {
+fn feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
     let tmp = state[T - 1];
     for i in 1..T {
         state[T - i] = state[T - i - 1];
@@ -42,7 +41,7 @@ fn feistel_shift<T>(mut state: [Field; T]) -> [Field; T]  {
     state
 }
 
-fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T]  {
+fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
     let tmp = state[0];
     for i in 0..T - 1 {
         state[i] = state[i + 1];

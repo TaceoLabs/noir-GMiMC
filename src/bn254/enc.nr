@@ -23,7 +23,6 @@ pub fn x5_5(mut x: [Field; 5], k: Field) -> [Field; 5] {
     x
 }
 
-
 pub fn x5_6(mut x: [Field; 6], k: Field) -> [Field; 6] {
     x = encrypt(consts::x5_6_config(), x, k);
     x
