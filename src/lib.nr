@@ -1,6 +1,7 @@
 use dep::std::field::modulus_num_bits;
 
-mod bn254; // Instantiations of GMiMC for prime field of the same order as BN254
+/// Instantiations of GMiMC for prime field of the same order as BN254
+mod bn254;
 
 struct GmimcConfig<R> {
     alpha: Field, // S-box power; depends on the underlying field
@@ -8,10 +9,7 @@ struct GmimcConfig<R> {
 }
 
 pub fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
-    GmimcConfig {
-        alpha: alpha,
-        arc: arc,
-    }
+    GmimcConfig { alpha, arc }
 }
 
 fn round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
@@ -50,10 +48,10 @@ fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
     state
 }
 
-
 // General GMiMC block cipher
 pub fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
-    assert(modulus_num_bits() as u16 >= 128); // otherwise key is too small
+    // otherwise key is too small
+    assert(modulus_num_bits() as u16 >= 128);
 
     let GmimcConfig {alpha, arc} = gmimc_conf;
 
@@ -66,7 +64,8 @@ pub fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) ->
 }
 
 pub fn decrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
-    assert(modulus_num_bits() as u16 >= 128); // otherwise key is too small
+    // otherwise key is too small
+    assert(modulus_num_bits() as u16 >= 128);
 
     let GmimcConfig {alpha, arc} = gmimc_conf;
 
@@ -197,7 +196,9 @@ fn test_enc_x5_14() {
 
 #[test]
 fn test_enc_x5_15() {
-    let x = [8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23];
+    let x = [
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23
+    ];
     let k = 1246;
     let cipher = bn254::enc::x5_15(x, k);
     let plain = bn254::dec::x5_15(cipher, k);
@@ -206,7 +207,9 @@ fn test_enc_x5_15() {
 
 #[test]
 fn test_enc_x5_16() {
-    let x = [8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23, 53];
+    let x = [
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23, 53
+    ];
     let k = 1246;
     let cipher = bn254::enc::x5_16(x, k);
     let plain = bn254::dec::x5_16(cipher, k);
