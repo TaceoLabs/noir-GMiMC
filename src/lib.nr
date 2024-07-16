@@ -8,7 +8,7 @@ struct GmimcConfig<R> {
     arc: [Field; R], // round constants
 }
 
-pub fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
+pub fn config<R>(alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
     GmimcConfig { alpha, arc }
 }
 
