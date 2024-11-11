@@ -1,14 +1,14 @@
 use dep::std::field::modulus_num_bits;
 
 /// Instantiations of GMiMC for prime field of the same order as BN254
-mod bn254;
+pub mod bn254;
 
 pub struct GmimcConfig<let R: u32> {
     alpha: Field, // S-box power; depends on the underlying field
     arc: [Field; R], // round constants
 }
 
-pub fn config<let R: u32> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
+pub fn config<let R: u32>(alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
     GmimcConfig { alpha, arc }
 }
 
@@ -21,7 +21,12 @@ fn round<let T: u32>(mut state: [Field; T], key: Field, alpha: Field, arc: Field
     state
 }
 
-fn dec_round<let T: u32>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
+fn dec_round<let T: u32>(
+    mut state: [Field; T],
+    key: Field,
+    alpha: Field,
+    arc: Field,
+) -> [Field; T] {
     let sum = state[0] + key + arc;
     let power = sum.pow_32(alpha);
     for i in 1..T {
@@ -49,11 +54,15 @@ fn inv_feistel_shift<let T: u32>(mut state: [Field; T]) -> [Field; T] {
 }
 
 // General GMiMC block cipher
-pub fn encrypt<let T: u32, let R: u32>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn encrypt<let T: u32, let R: u32>(
+    gmimc_conf: GmimcConfig<R>,
+    mut x: [Field; T],
+    k: Field,
+) -> [Field; T] {
     // otherwise key is too small
     assert(modulus_num_bits() as u16 >= 128);
 
-    let GmimcConfig {alpha, arc} = gmimc_conf;
+    let GmimcConfig { alpha, arc } = gmimc_conf;
 
     for r in 0..R - 1 {
         x = round(x, k, alpha, arc[r]);
@@ -63,11 +72,15 @@ pub fn encrypt<let T: u32, let R: u32>(gmimc_conf: GmimcConfig<R>, mut x: [Field
     x
 }
 
-pub fn decrypt<let T: u32, let R: u32>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn decrypt<let T: u32, let R: u32>(
+    gmimc_conf: GmimcConfig<R>,
+    mut x: [Field; T],
+    k: Field,
+) -> [Field; T] {
     // otherwise key is too small
     assert(modulus_num_bits() as u16 >= 128);
 
-    let GmimcConfig {alpha, arc} = gmimc_conf;
+    let GmimcConfig { alpha, arc } = gmimc_conf;
 
     for r in 1..R {
         x = dec_round(x, k, alpha, arc[R - r]);
@@ -178,7 +191,9 @@ fn test_enc_x5_12() {
 
 #[test]
 fn test_enc_x5_13() {
-    let x = [8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893];
+    let x = [
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893,
+    ];
     let k = 1246;
     let cipher = bn254::enc::x5_13(x, k);
     let plain = bn254::dec::x5_13(cipher, k);
@@ -187,7 +202,10 @@ fn test_enc_x5_13() {
 
 #[test]
 fn test_enc_x5_14() {
-    let x = [8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536];
+    let x = [
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893,
+        4536,
+    ];
     let k = 1246;
     let cipher = bn254::enc::x5_14(x, k);
     let plain = bn254::dec::x5_14(cipher, k);
@@ -197,7 +215,8 @@ fn test_enc_x5_14() {
 #[test]
 fn test_enc_x5_15() {
     let x = [
-        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893,
+        4536, 23,
     ];
     let k = 1246;
     let cipher = bn254::enc::x5_15(x, k);
@@ -208,7 +227,8 @@ fn test_enc_x5_15() {
 #[test]
 fn test_enc_x5_16() {
     let x = [
-        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893, 4536, 23, 53
+        8654, 872364, 872634, 6723, 98234, 72394, 983745, 3289075, 283974, 2180734, 64, 1212, 7893,
+        4536, 23, 53,
     ];
     let k = 1246;
     let cipher = bn254::enc::x5_16(x, k);
