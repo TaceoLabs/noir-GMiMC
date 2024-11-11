@@ -3,16 +3,16 @@ use dep::std::field::modulus_num_bits;
 /// Instantiations of GMiMC for prime field of the same order as BN254
 mod bn254;
 
-struct GmimcConfig<R> {
+pub struct GmimcConfig<let R: u32> {
     alpha: Field, // S-box power; depends on the underlying field
     arc: [Field; R], // round constants
 }
 
-pub fn config<R> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
+pub fn config<let R: u32> (alpha: Field, arc: [Field; R]) -> GmimcConfig<R> {
     GmimcConfig { alpha, arc }
 }
 
-fn round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
+fn round<let T: u32>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
     let sum = state[0] + key + arc;
     let power = sum.pow_32(alpha);
     for i in 1..T {
@@ -21,7 +21,7 @@ fn round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Fie
     state
 }
 
-fn dec_round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
+fn dec_round<let T: u32>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> [Field; T] {
     let sum = state[0] + key + arc;
     let power = sum.pow_32(alpha);
     for i in 1..T {
@@ -30,7 +30,7 @@ fn dec_round<T>(mut state: [Field; T], key: Field, alpha: Field, arc: Field) -> 
     state
 }
 
-fn feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
+fn feistel_shift<let T: u32>(mut state: [Field; T]) -> [Field; T] {
     let tmp = state[T - 1];
     for i in 1..T {
         state[T - i] = state[T - i - 1];
@@ -39,7 +39,7 @@ fn feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
     state
 }
 
-fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
+fn inv_feistel_shift<let T: u32>(mut state: [Field; T]) -> [Field; T] {
     let tmp = state[0];
     for i in 0..T - 1 {
         state[i] = state[i + 1];
@@ -49,7 +49,7 @@ fn inv_feistel_shift<T>(mut state: [Field; T]) -> [Field; T] {
 }
 
 // General GMiMC block cipher
-pub fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn encrypt<let T: u32, let R: u32>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
     // otherwise key is too small
     assert(modulus_num_bits() as u16 >= 128);
 
@@ -63,7 +63,7 @@ pub fn encrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) ->
     x
 }
 
-pub fn decrypt<T, R>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
+pub fn decrypt<let T: u32, let R: u32>(gmimc_conf: GmimcConfig<R>, mut x: [Field; T], k: Field) -> [Field; T] {
     // otherwise key is too small
     assert(modulus_num_bits() as u16 >= 128);
 

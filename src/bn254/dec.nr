@@ -1,6 +1,5 @@
 use crate::bn254::consts;
 use crate::decrypt;
-use crate::GmimcConfig;
 
 #[field(bn254)]
 pub fn x5_2(mut x: [Field; 2], k: Field) -> [Field; 2] {
